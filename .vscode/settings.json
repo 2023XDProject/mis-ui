@@ -1,0 +1,21 @@
+{
+    "emmet.syntaxProfiles": {
+           "vue-html": "html",
+           "vue": "html"
+    },
+    "eslint.codeActionsOnSave.rules": null,
+
+    
+        "eslint.validate": [
+             "javascript",
+             "javascriptreact",
+             "html",
+             "vue"
+         ],
+     
+         "eslint.options": {
+             "plugins":["html"]
+         }
+     
+     
+}

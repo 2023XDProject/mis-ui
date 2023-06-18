@@ -96,31 +96,18 @@ import { getCurrentScope } from 'vue'
 		},
 		methods: {
 			login(){
-				//this.$router.push('manage')
-				//this.$message.error("尚未判断")
-				//document.write("加入loading服务")
 				this.myPost("/user/login", this.Student, response => {
-					document.write("收到response")
-					this.$message.error("尚未判断")
-					//console.log(response.obj.code)
-                    //console.log(response.obj)
-					//console.log(response.data)
-					//console.log(response.data.data.password)
-					//this.$message.message(response.data.pwd)
-					//this.console.log(response.code)
-					//this.$message.error("尚未判断")
-					document.write(response.code)
 					if(response.code==='200000'){
-						document.write("成功响应")
-						this.$message({
-		                        type: 'success',
-		                        message: '登录成功'
-								//更新信息
-		                    });
+						alert("登录成功"); 
+						//setStore = (this.Student.name, this.Student);
+                        //const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
+                      
 						this.$router.push('manage')
 					 }else{
-						this.$router.push('manage')
-						//this.$message.error(response.message)
+						//this.$message.error("用户名或密码错误")
+						//this.$router.push('manage')
+						//document.write("调用回到函数")
+						alert("登录失败"); 
 					 }
 				})
 
@@ -153,16 +140,6 @@ import { getCurrentScope } from 'vue'
 			},
 			...mapActions(['getAdminData']),
 			async submitForm(formName) {
-
-               //测试，记得删
-							this.$message({
-		                        type: 'success',
-		                        message: '登录成功'
-		                    });
-							this.$router.push('manage')
-				//			
-
-
 				this.$refs[formName].validate(async (valid) => {
 					if (valid) {
 						const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})

@@ -2,19 +2,39 @@
 // 首页（没有左边侧栏）
 <template>
   <div>
-    <head-top> </head-top>
-    <section class="backContainer">
+    <!-- <head-top> </head-top>
+      <section class="backContainer">
       <section class="subContainer">
-		<p class="p" weight="1020px">常用功能：</p>
-	  </section>
+        <p class="p" weight="1020px">常用功能：</p>
+      </section>
       <section class="subContainer2">
-		<p class="p">通知：</p>
-	  </section>
+        <p class="p">通知：</p>
+      </section>
       <section class="subContainer3">
-		<p class="p">温馨提示：</p>
-	  </section>
+        <p class="p">温馨提示：</p>
+      </section>
     </section>
-  </div>
+  </div> -->
+
+          <div class="pricing-table">
+    <!-- Pricing column -->
+    <div class="pricing-table__column">
+        <!-- Title -->
+        <!-- <p class="p" weight="1020px">常用功能：</p> -->
+
+        <!-- Price -->
+        <!-- 记得加图片 -->
+
+        <!-- Description -->
+        
+
+        <!-- Button -->
+        
+      </div>
+
+</div>
+    <!-- Repeated pricing columns -->
+    </div>
 </template>
 
 <script>
@@ -159,6 +179,7 @@ export default {
     .ctp(1100px,680px);
     //position: relativ;
     font-size: 35px;
+    
     color: rgb(78, 148, 228);
     z-index: 9;
   }
@@ -168,6 +189,8 @@ export default {
   .wh(510px,320px);
   border-radius: 5px;
   background-color: rgb(253, 255, 255);
+        border: 0.25rem dashed #5384ce;
+    border-radius: 0.25rem;
   .subP1 {
     .ctp(750px,400px);
     font-size: 20px;
@@ -193,6 +216,8 @@ export default {
   .wh(510px,320px);
   border-radius: 5px;
   background-color: rgb(253, 255, 255);
+        border: 0.25rem dashed #5384ce;
+    border-radius: 0.25rem;
   .subP1 {
     .ctp(750px,400px);
     font-size: 20px;
@@ -218,16 +243,18 @@ export default {
   .wh(1060px,300px);
   border-radius: 5px;
   background-color: rgb(253, 255, 255);
+        border: 0.25rem dashed #5384ce;
+    border-radius: 0.25rem;
   .subP {
-    .ctp(750px,400px);
+    .ctp(700px,400px);
     font-size: 20px;
     color: rgb(10, 41, 76);
     z-index: 9;
   }
 }
 
-.p{
-	color: #289cce;
-	font-size: 20px;
+.p {
+  color: #289cce;
+  font-size: 20px;
 }
 </style>

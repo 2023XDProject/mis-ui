@@ -10,17 +10,20 @@
 <script>
 	import {signout} from '@/api/getData'
 	import {baseImgPath} from '@/config/env'
+	import {getStore} from '@/config/mUtils'
 	import {mapActions, mapState} from 'vuex'
 
     export default {
     	data(){
     		return {
     			baseImgPath,
+
     		}
     	},
     	created(){
     		if (!this.adminInfo.id) {
-    			this.getAdminData()
+				this.getStore()
+    			//this.getAdminData()
     		}
     	},
     	computed: {

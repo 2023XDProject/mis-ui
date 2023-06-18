@@ -41,31 +41,31 @@ const routes = [
 		}, {
 			path: '/addShop',
 			component: addShop,
-			meta: ['添加数据', '添加商铺'],
+			meta: ['充值', '充值水费'],
 		}, {
 			path: '/addGoods',
 			component: addGoods,
-			meta: ['添加数据', '添加商品'],
+			meta: ['充值', '充值电费'],
 		}, {
 			path: '/userList',
 			component: userList,
-			meta: ['数据管理', '用户列表'],
+			meta: ['数据统计', '剩余费用'],
 		}, {
 			path: '/shopList',
 			component: shopList,
-			meta: ['数据管理', '商家列表'],
+			meta: ['数据统计', '历史账单'],
 		}, {
 			path: '/foodList',
 			component: foodList,
-			meta: ['数据管理', '食品列表'],
+			meta: ['数据统计', '食品列表'],
 		}, {
 			path: '/orderList',
 			component: orderList,
-			meta: ['数据管理', '订单列表'],
+			meta: ['数据统计', '订单列表'],
 		}, {
 			path: '/adminList',
 			component: adminList,
-			meta: ['数据管理', '管理员列表'],
+			meta: ['数据统计', '管理员列表'],
 		}, {
 			path: '/visitor',
 			component: visitor,
@@ -85,7 +85,7 @@ const routes = [
 		}, {
 			path: '/adminSet',
 			component: adminSet,
-			meta: ['设置', '管理员设置'],
+			meta: ['设置', '个人信息'],
 		}, {
 			path: '/sendMessage',
 			component: sendMessage,

@@ -18,9 +18,9 @@
 //     baseImgPath = '//elm.cangdu.org/img/';
 // }
 
-let baseUrl = 'http://192.168.43.128:8082'; 
-//let routerMode = 'hash';
-let baseImgPath;
+// let baseUrl = 'http://192.168.43.128:8082'; 
+// //let routerMode = 'hash';
+// let baseImgPath;
 
 // if (process.env.NODE_ENV == 'development') {
 // 	baseUrl = 'http://172.26.187.174:8082';

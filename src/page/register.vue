@@ -24,19 +24,21 @@
 			        <p class="login1">注册账号</p>
 					<br>
 					<el-form-item prop="username">
-						<el-input v-model="loginForm.username" placeholder="用户名"><span>dsfsf</span></el-input>
+						<el-input v-model="Student.uid" placeholder="用户名"><span>dsfsf</span></el-input>
 					</el-form-item>
            <br>
 					<el-form-item prop="password">
-						<el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+						<el-input type="password" placeholder="密码" v-model="Student.pwd"></el-input>
 					</el-form-item>
              <br>
 					<el-form-item prop="password2">
-						<el-input type="password2" placeholder="确认密码" v-model="loginForm.password"></el-input>
+						<el-input type="password2" placeholder="确认密码" v-model="Student.pwd2"></el-input>
 					</el-form-item>
           <br><br>
 		        <section class="form_contianer_2" v-show="showLogin">
-				    	<el-button type="primary" @click="submitForm('loginForm')" class="submit_btn">注册账号</el-button>
+				    	<el-button type="primary" @click="register()" class="submit_btn">注册账号</el-button>
+						<!-- <el-button type="primary" @click="login()" class="submit_btn">登录</el-button> -->
+						<!-- <el-button type="primary" @click="register('gvjv')" class="submit_btn">注册账号</el-button> -->
 				</section>
 				</el-form>
 	  		</section>
@@ -45,12 +47,19 @@
 </template>
 
 <script>
-	import {login, getAdminInfo} from '@/api/getData'
+	import {register, getAdminInfo} from '@/api/getData'
 	import {mapActions, mapState} from 'vuex'
+    import { getCurrentScope } from 'vue'
+	import {myPost } from 'plugins'
 
 	export default {
 	    data(){
 			return {
+                Student:{
+					uid: "",
+					pwd: "",
+                    pwd2: "",
+				},
 				loginForm: {
 					username: '',
 					password: '',
@@ -81,35 +90,72 @@
 		},
 		methods: {
 			...mapActions(['getAdminData']),
-			async submitForm(formName) {
-				this.$refs[formName].validate(async (valid) => {
-					if (valid) {
-						const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
-						if (res.status == 1) {
-							this.$message({
-		                        type: 'success',
-		                        message: '登录成功'
-		                    });
-							this.$router.push('manage')
-						}else{
-							this.$message({
-		                        type: 'error',
-		                        message: res.message
-		                    });
-						}
-					} else {
-						this.$notify.error({
-							title: '错误',
-							message: '请输入正确的用户名密码',
-							offset: 100
-						});
-						return false;
-					}
-				});
+			// register(){
+			// 	this.myPost("/user/register", this.Student, response => {
+			// 		document.write("进入主程序");
+            //         if(response.code==='200000'){
+						
+			// 			alert("注册成功"); 
+            //             //const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
+                   
+			// 			this.$router.push('manage')
+			// 		 }else{
+			// 			//this.$message.error("用户名或密码错误")
+			// 			//this.$router.push('manage')
+			// 			//document.write("调用回到函数")
+			// 			alert("注册失败"); 
+			// 		 }
+			// 	})   
+			// },
+			async register(){
+				alert("注册开始"); 
+                //this.$router.push('manage')
+				//document.write("注册开始")
+				this.myPost("/user/register", this.Student,response=> {
+					if(response.code==='200000'){
+						alert("登录成功"); 
+						//setStore = (this.Student.name, this.Student);
+                        //const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
+                      
+						this.$router.push('manage')
+					 }else{
+						//this.$message.error("用户名或密码错误")
+						//this.$router.push('manage')
+						//document.write("调用回到函数")
+						alert("登录失败"); 
+					 }
+				})
 			},
-			async register(formName){
-                 this.$router.push('register')
-			}
+			
+			// async submitForm(formName) {
+			// 	this.$refs[formName].validate(async (valid) => {
+			// 		if (valid) {
+			// 			const res = await login({user_name: this.loginForm.username, password: this.loginForm.password})
+			// 			if (res.status == 1) {
+			// 				this.$message({
+		    //                     type: 'success',
+		    //                     message: '登录成功'
+		    //                 });
+			// 				this.$router.push('manage')
+			// 			}else{
+			// 				this.$message({
+		    //                     type: 'error',
+		    //                     message: res.message
+		    //                 });
+			// 			}
+			// 		} else {
+			// 			this.$notify.error({
+			// 				title: '错误',
+			// 				message: '请输入正确的用户名密码',
+			// 				offset: 100
+			// 			});
+			// 			return false;
+			// 		}
+			// 	});
+			// },
+			// async register(formName){
+            //      this.$router.push('register')
+			// }
 		},
 		watch: {
 			adminInfo: function (newValue){

@@ -8,6 +8,7 @@ const state = {
 	adminInfo: {
 		avatar: 'default.jpg'
 	},
+
 }
 
 const mutations = {
@@ -22,6 +23,21 @@ const actions = {
 			const res = await getAdminInfo()
 			if (res.status == 1) {
 				commit('saveAdminInfo', res.data);
+			}else{
+				throw new Error(res.type)
+			}
+		}catch(err){
+			// console.log(err.message)
+		}
+	}
+}
+
+const actions2 = {
+	async getStudentID({commit}){
+		try{
+			const res = await getAdminInfo()
+			if (res.status == 1) {
+				commit('saveStudentID', res.data);
 			}else{
 				throw new Error(res.type)
 			}

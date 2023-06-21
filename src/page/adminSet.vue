@@ -1,44 +1,42 @@
 <template>
   <div class="fillcontain">
     <head-top></head-top>
-    <header class="admin_title">管理员信息</header>
+    <header class="admin_title">个人信息</header>
     <div class="admin_set">
       <ul>
         <li>
           <span>姓名：</span><span>{{ adminInfo.user_name }}</span>
         </li>
         <li>
-          <span>性别：</span><span>{{ adminInfo.create_time }}</span>
+          <span>年龄：</span><span>{{  adminInfo.user_name}}</span>
         </li>
         <li>
-          <span>学号：</span><span>{{ adminInfo.admin }}</span>
+          <span>性别：</span><span>{{  adminInfo.user_name }}</span>
         </li>
         <li>
-          <span>学院：</span><span>{{ adminInfo.id }}</span>
+          <span>学号：</span><span>{{ adminInfo.id }}</span>
+        </li>
+        <li>
+          <span>年级：</span><span>{{ adminInfo.id }}</span>
         </li>
         <li>
           <span>专业：</span><span>{{ adminInfo.id }}</span>
         </li>
         <li>
-          <span>宿舍号：</span><span>{{ adminInfo.id }}</span>
+          <span>宿舍号：</span><span>{{ adminInfo.admin }}</span>
         </li>
-        <li>
-          <span>更换头像：</span>
-          <el-upload
-            class="avatar-uploader"
-            :action="baseUrl + '/admin/update/avatar/' + adminInfo.id"
-            :show-file-list="false"
-            :on-success="uploadImg"
-            :before-upload="beforeImgUpload"
-          >
-            <img
-              v-if="adminInfo.avatar"
-              :src="baseImgPath + adminInfo.avatar"
-              class="avatar"
-            />
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
-        </li>
+        <!-- <li>
+                    <span>更换头像：</span>
+                    <el-upload
+                      class="avatar-uploader"
+                      :action="baseUrl + '/admin/update/avatar/' + adminInfo.id"
+                      :show-file-list="false"
+                      :on-success="uploadImg"
+                      :before-upload="beforeImgUpload">
+                      <img v-if="adminInfo.avatar" :src="baseImgPath + adminInfo.avatar" class="avatar">
+                      <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
+                </li>     -->
       </ul>
     </div>
   </div>
@@ -54,35 +52,36 @@ export default {
     return {
       baseUrl,
       baseImgPath,
+      Studentdto: JSON.parse(localStorage.getItem("user")),
     };
   },
   components: {
-  	headTop,
+    headTop,
   },
   computed: {
     ...mapState(["adminInfo"]),
   },
   methods: {
-    uploadImg(res, file) {
-      if (res.status == 1) {
-        this.adminInfo.avatar = res.image_path;
-      } else {
-        this.$message.error("上传图片失败！");
-      }
-    },
-    beforeImgUpload(file) {
-      const isRightType =
-        file.type === "image/jpeg" || file.type === "image/png";
-      const isLt2M = file.size / 1024 / 1024 < 2;
+    // uploadImg(res, file) {
+    //   if (res.status == 1) {
+    //     this.adminInfo.avatar = res.image_path;
+    //   } else {
+    //     this.$message.error("上传图片失败！");
+    //   }
+    // },
+    // beforeImgUpload(file) {
+    //   const isRightType =
+    //     file.type === "image/jpeg" || file.type === "image/png";
+    //   const isLt2M = file.size / 1024 / 1024 < 2;
 
-      if (!isRightType) {
-        this.$message.error("上传头像图片只能是 JPG 格式!");
-      }
-      if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!");
-      }
-      return isRightType && isLt2M;
-    },
+    //   if (!isRightType) {
+    //     this.$message.error("上传头像图片只能是 JPG 格式!");
+    //   }
+    //   if (!isLt2M) {
+    //     this.$message.error("上传头像图片大小不能超过 2MB!");
+    //   }
+    //   return isRightType && isLt2M;
+    // },
   },
 };
 </script>

@@ -1,16 +1,15 @@
 <template>
   <div>
-            <head-top>
-		</head-top>
+    <head-top> </head-top>
     <section class="backContainer">
       <p class="title">统计数据</p>
       <br /><br />
       <section class="subContainer">
-        <p class="subP1">宿舍号: {{ dormNo }}</p>
+        <p class="subP1">宿舍号: </p><p>{{ result.dormID }}</p>
         <br /><br />
-        <p class="subP2">剩余水费: {{ waterBill }}</p>
+        <p class="subP2">剩余水费:</p><p>{{ result.waterBill }}</p>
         <br /><br />
-        <p class="subP3">剩余电费: {{ electricityBillo }}</p>
+        <p class="subP3">剩余电费: </p><p>{{ result.electricityBill }}</p>
       </section>
     </section>
   </div>
@@ -26,51 +25,77 @@ export default {
       limit: 20,
       count: 0,
       currentPage: 1,
+      Studentdto: JSON.parse(localStorage.getItem("uid")),
+      info: {
+        domID: "",
+      },
+      result :{
+        dormID: "",
+        waterBill: "",
+        electricityBill: "",
+      }
     };
   },
   components: {
-  	headTop,
+    headTop,
   },
   created() {
     this.initData();
+    if(!this.info.domID){
+       getDomID()
+    }
+     inquire()
   },
   methods: {
-    async initData() {
-      try {
-        const countData = await getUserCount();
-        if (countData.status == 1) {
-          this.count = countData.count;
+     async getDomID(){
+         info=Studentdto.domID
+     },
+    async inquire() {
+      this.myPost("/dorm/balance",this.info, (response) => {
+        if (response.code === "200000") {
+          this.result=response;
         } else {
-          throw new Error("获取数据失败");
+          alert("查询失败");
         }
-        this.getUsers();
-      } catch (err) {
-        console.log("获取数据失败", err);
-      }
+      })
     },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-      this.offset = (val - 1) * this.limit;
-      this.getUsers();
-    },
-    async getUsers() {
-      const Users = await getUserList({
-        offset: this.offset,
-        limit: this.limit,
-      });
-      this.tableData = [];
-      Users.forEach((item) => {
-        const tableData = {};
-        tableData.username = item.username;
-        tableData.registe_time = item.registe_time;
-        tableData.city = item.city;
-        this.tableData.push(tableData);
-      });
-    },
-  },
+
+  //   async initData() {
+  //     try {
+  //       const countData = await getUserCount();
+  //       if (countData.status == 1) {
+  //         this.count = countData.count;
+  //       } else {
+  //         throw new Error("获取数据失败");
+  //       }
+  //       this.getUsers();
+  //     } catch (err) {
+  //       console.log("获取数据失败", err);
+  //     }
+  //   },
+  //   handleSizeChange(val) {
+  //     console.log(`每页 ${val} 条`);
+  //   },
+  //   handleCurrentChange(val) {
+  //     this.currentPage = val;
+  //     this.offset = (val - 1) * this.limit;
+  //     this.getUsers();
+  //   },
+  //   async getUsers() {
+  //     const Users = await getUserList({
+  //       offset: this.offset,
+  //       limit: this.limit,
+  //     });
+  //     this.tableData = [];
+  //     Users.forEach((item) => {
+  //       const tableData = {};
+  //       tableData.username = item.username;
+  //       tableData.registe_time = item.registe_time;
+  //       tableData.city = item.city;
+  //       this.tableData.push(tableData);
+  //     });
+  //   },
+   },
 };
 </script>
 

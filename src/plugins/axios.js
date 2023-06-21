@@ -70,7 +70,7 @@ const sync_request = async (url, method, params) => {
 }
 
 const han_request = (url, method, params, callback) => {
-	document.write("加入loading服务")
+	//document.write("加入loading服务")
 	// 请求之前先加入loading服务
 	let loadingInstance = Loading.service({
 		lock: true,  //在出现加载圈时不允许干其他事
@@ -116,11 +116,11 @@ const han_request = (url, method, params, callback) => {
 	_axios.request(hanConfig).then(response => {
 		if(response.data.code === '200000') {
 			//callback表示：请求成功后需要运行的代码
-			document.write("登录成功")
+			//document.write("登录成功")
 			callback(response.data)
 		} else {
 			callback(response.data)
-			document.write("登录失败")
+			//document.write("登录失败")
 			//document.write("请求失败")
 			//把报错信息做一个提示
 			//Message.error(response.data.message)
@@ -139,12 +139,12 @@ const han_post = (url, params, callback) => {
 	han_request(url, 'post', params, (response) => {
 		if(response.code === '200000') {
 			//alert("登录成功"); 
-			document.write("登录成功")
+			//document.write("登录成功")
 			//Message.success(response.message)
 			callback(response)
 		}else{
 			callback(response)
-			document.write("登录失败")
+			//document.write("登录失败")
 			//alert("登录失败"); 
 		}
 		//document.write("调用回到函数")

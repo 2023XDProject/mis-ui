@@ -2,8 +2,10 @@
  * 存储localStorage
  */
 export const setStore = (name, content) => {
+    document.write("准备获取")
 	if (!name) return;
 	if (typeof content !== 'string') {
+        document.write("准备获取")
 		content = JSON.stringify(content);
 	}
 	window.localStorage.setItem(name, content);
@@ -16,6 +18,21 @@ export const getStore = name => {
 	if (!name) return;
 	return window.localStorage.getItem(name);
 }
+
+/**
+ * 获取localStorage
+ */
+export const storage = {
+    get(key) {
+       if (!key) {
+           return null
+       }
+       key = key.toString();
+       const data = window.localStorage.getItem(key);
+       return JSON.parse(data);
+    },
+ }
+
 
 /**
  * 删除localStorage

@@ -19,7 +19,7 @@ module.exports = {
       '/api': {
         target: 'http://172.26.187.174:8082', // 跨域请求的地址
         changeOrigin: true, // 只有这个值为true的情况下 才表示开启跨域
-        secure: false, // 如果是https接口，需要配置这个参数
+        secure: true, // 如果是https接口，需要配置这个参数
         // 路径重写
         pathRewrite: {
             // 重新路由  localhost:8888/api/login  => www.baidu.com/api/login

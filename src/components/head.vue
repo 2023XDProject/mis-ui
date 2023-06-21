@@ -1,7 +1,8 @@
 <template>
   <div class="header">
     <el-col style="weight: 100% ">
-      <el-row :span="4" style="min-weight: 100%; background-color: #324057">
+      <el-row :span="4" style="min-weight: 100%">
+		 <el-breadcrumb-item >首页</el-breadcrumb-item>
       </el-row>
     </el-col>
   </div>
@@ -25,12 +26,15 @@
 				this.getStore()
     			//this.getAdminData()
     		}
+			if(!this.Studentdto.stuName){
+				this.storage('uid')
+			}
     	},
     	computed: {
-    		...mapState(['adminInfo']),
+    		...mapState(['Student']),
     	},
 		methods: {
-			...mapActions(['getAdminData']),
+			...mapActions(['getStudent']),
 			async handleCommand(command) {
 				if (command == 'home') {
 					this.$router.push('/manage');
